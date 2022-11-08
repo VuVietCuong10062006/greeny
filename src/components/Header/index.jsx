@@ -10,6 +10,9 @@ import HeartSideBar from "./HeartSideBar";
 import NavSidebar from "./NavSidebar";
 import Overlay from "../Overlay";
 import { logout } from "../../store/actions";
+import axiosClient from "../../api/axiosClient";
+import productApi from "../../api/productApi";
+import useDebounce from "../../hooks/useDebounce";
 
 const Header = () => {
     const { productCartItem, products, auth, dispatchAuth } =
@@ -28,15 +31,17 @@ const Header = () => {
         setInputSearch(searchValue);
     };
 
+    const debounce = useDebounce(inputSearch, 700)
+
     useEffect(() => {
-        let newProductSearch = [];
-        if (inputSearch) {
-            newProductSearch = products.filter((p) =>
-                p.name.toLowerCase().includes(inputSearch.toLowerCase())
-            );
+        if (debounce.trim() === "") {
+            return
         }
-        setProductSearch(newProductSearch);
-    }, [inputSearch]);
+        productApi.searchProduct(debounce).then(data => {
+            console.log(data)
+            setProductSearch(data);
+        })
+    }, [debounce]);
 
     const handleLogout = () => {
         dispatchAuth(logout());
@@ -199,6 +204,9 @@ const Header = () => {
                                     onChange={(e) =>
                                         handleInputSearch(e.target.value)
                                     }
+                                    onBlur={() => {
+                                        setInputSearch('')
+                                        setProductSearch([])}}
                                 />
                                 <button>
                                     <i className="fa-solid fa-magnifying-glass"></i>

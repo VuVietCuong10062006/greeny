@@ -1,14 +1,24 @@
-import React, { useContext } from "react";
+import { useEffect, useContext } from "react";
 import "./Feature.css";
 import Context from "../../../context/Context";
 import { addProduct } from "../../../store/actions";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import productApi from "../../../api/productApi";
+import formatMoney from "../../../utils/utils";
 
 const Feature = () => {
     const { products, productCartItem, dispatchProducCart } = useContext(Context);
-    let productFeatures = products.filter((p) => {
-        return p.tag == "Feature";
-    });
+    const [productFeatures, setProductFeature] = useState([])
+
+    useEffect(() =>{
+        productApi.getProductFeature().then((data) =>{
+            setProductFeature(data)
+        })
+    },[])
+    // let productFeatures = products.filter((p) => {
+    //     return p.tag == "Feature";
+    // });
 
     const handleAddProductCart = (id) => {
         const productItem = products.find((p) => p.id === id);
@@ -56,12 +66,12 @@ const Feature = () => {
                                         <img src={product.images[0]} alt="" />
                                     </Link>
                                     <div className="feature-widget">
-                                        <a href="" className="feature-video">
+                                        <Link to="/" className="feature-video">
                                             <i className="fa-solid fa-play"></i>
-                                        </a>
-                                        <a href="" className="feature-view">
+                                        </Link>
+                                        <Link to={`/${product.id}`} className="feature-view">
                                             <i className="fa-solid fa-eye"></i>
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
 
@@ -75,9 +85,9 @@ const Feature = () => {
                                         <i className={product.rating >=3 ? "active fa-solid fa-star" : "fa-solid fa-star" }></i>
                                         <i className={product.rating >=4 ? "active fa-solid fa-star" : "fa-solid fa-star" }></i>
                                         <i className={product.rating >=5 ? "active fa-solid fa-star" : "fa-solid fa-star" }></i>
-                                        <a href="">(3)</a>
+                                        {/* <a href="">(3)</a> */}
                                     </div>
-                                    <h6 className="feature-price">{product.price}</h6>
+                                    <h6 className="feature-price">{formatMoney(product.price)}</h6>
                                     <p className="feature-desc">
                                         {product.description}
                                     </p>

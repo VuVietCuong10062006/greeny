@@ -3,6 +3,7 @@ import ShopBanner from "../ShopPage/ShopBanner";
 import "./CartPage.css";
 import Context from "../../context/Context";
 import { addCount, deleteCount, subtractCount } from "../../store/actions";
+import formatMoney from "../../utils/utils";
 
 const CartPage = () => {
     const { productCartItem, dispatchProducCart } = useContext(Context);
@@ -46,11 +47,11 @@ const CartPage = () => {
                                                 <h6>{product.name}</h6>
                                                 <div className="cart-price">
                                                     <p className="item-price">
-                                                        {product.price}
+                                                        {formatMoney(product.price)}
                                                     </p>
                                                     <p className="item-price-total">
-                                                        {product.price *
-                                                            product.count}
+                                                        {formatMoney(product.price *
+                                                            product.count)}
                                                     </p>
                                                 </div>
                                                 <div className="cart-action-group">

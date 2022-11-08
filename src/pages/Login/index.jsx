@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
     const navigate = useNavigate();
-    const { users, dispatchAuth } = useContext(Context);
+    const { users, dispatchAuth, user } = useContext(Context);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [messageEmail, setMessageEmail] = useState("")
@@ -25,11 +25,11 @@ const Login = () => {
         setMessagePassword("")
 
         // search user
-        const user = users.find(
+        const checkUser = [...users,...user].find(
             (user) => user.email === email && user.password === password
         );
 
-        if (!user) {
+        if (!checkUser) {
             toast.error('Email hoặc password không chính xác', {
                 position: toast.POSITION.TOP_CENTER
               });
@@ -39,7 +39,7 @@ const Login = () => {
             position: toast.POSITION.TOP_CENTER
           });
         // Lưu lại thông tin user đăng nhập thành công
-        dispatchAuth(login(user));
+        dispatchAuth(login(checkUser));
         navigate("/");
     };
 

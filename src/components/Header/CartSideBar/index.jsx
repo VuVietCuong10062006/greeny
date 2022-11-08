@@ -4,6 +4,7 @@ import "./CartSideBar.css";
 import Context from "../../../context/Context";
 import { Link } from "react-router-dom";
 import { addCount, deleteCount, subtractCount } from "../../../store/actions";
+import formatMoney from "../../../utils/utils";
 
 const CartSideBar = ({ showCartSideBar, onCloseCartSideBar, handleCheckout }) => {
     const { productCartItem, dispatchProducCart } = useContext(Context);
@@ -59,7 +60,7 @@ const CartSideBar = ({ showCartSideBar, onCloseCartSideBar, handleCheckout }) =>
                         <div className="cart-sidebar-content">
                             <div className="cart-sidebar-info">
                                 <h6>{product.name}</h6>
-                                <p>{product.price}</p>
+                                <p>{formatMoney(product.price)}</p>
                             </div>
                             <div className="cart-sidebar-action-group">
                                 <div className="product-action">
@@ -112,7 +113,7 @@ const CartSideBar = ({ showCartSideBar, onCloseCartSideBar, handleCheckout }) =>
                     <span className="cart-sidebar-checkout-label">
                         Mua Ngay
                     </span>
-                    <span className="cart-sidebar-checkout-price">{totalMoneyProductCart}</span>
+                    <span className="cart-sidebar-checkout-price">{formatMoney(totalMoneyProductCart)}</span>
                 </Link>
                 <Link className="cart-sidebar-cartpage" to="cart-page">
                     <span className="cart-sidebar-checkout-label">

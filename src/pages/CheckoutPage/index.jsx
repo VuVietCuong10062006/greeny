@@ -6,6 +6,7 @@ import Context from "../../context/Context";
 import payment6 from "../../assets/image/payment-6.png";
 import payment7 from "../../assets/image/payment-7.png";
 import payment9 from "../../assets/image/payment-9.png";
+import formatMoney from "../../utils/utils";
 
 const CheckoutPage = () => {
     const { productCartItem } = useContext(Context);
@@ -176,7 +177,7 @@ const CheckoutPage = () => {
                                                         {product.name}
                                                     </h6>
                                                     <p className="order-product-price">
-                                                        {product.price}
+                                                        {formatMoney(product.price)}
                                                     </p>
                                                 </div>
                                             </li>

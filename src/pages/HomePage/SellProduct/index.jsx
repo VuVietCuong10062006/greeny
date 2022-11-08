@@ -3,6 +3,7 @@ import "./SellProduct.css";
 import Context from "../../../context/Context";
 import { addProduct } from "../../../store/actions";
 import { Link } from "react-router-dom";
+import formatMoney from "../../../utils/utils";
 
 const SellProduct = () => {
     const { products, productCartItem, dispatchProducCart } =
@@ -108,7 +109,7 @@ const SellProduct = () => {
                                         {product.name}
                                     </h6>
                                     <h6 className="product-price">
-                                        {product.price}
+                                        {formatMoney(product.price)}
                                     </h6>
                                     <button
                                         onClick={() =>
