@@ -403,6 +403,10 @@
     border-bottom: 2px solid #119744;
 }
 
+.navbar-item .active{
+    color: #119744;
+}
+
 .navbar-item a:hover{
     color: #119744;
 }

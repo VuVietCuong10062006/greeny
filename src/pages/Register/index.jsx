@@ -1,12 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
-import Context from "../../context/Context";
-import { addUser } from "../../store/actions";
+// import Context from "../../context/Context";
+// import { addUser } from "../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { addUsers, getUsers } from "../../redux/userSlice";
+import productApi from "../../api/productApi";
+
 
 const Register = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.users.users);
+  
   const [userName, setUserName] = useState("");
   const [userPassWord, setUserPassWord] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -16,7 +23,11 @@ const Register = () => {
   const [messagePassword, setMessagePassword] = useState("");
   const [messageCfPassword, setMessageCfPassword] = useState("");
 
-  const { user, dispatchUser } = useContext(Context);
+  // const { user, dispatchUser } = useContext(Context);
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
 
   const handleRegister = () => {
     setMessageName("");
@@ -26,12 +37,11 @@ const Register = () => {
     let isValid = checkValidate();
     if (!isValid) return;
 
-    let isExistUser = user.some((u) => u.email === userEmail);
+    let isExistUser = users.some((u) => u.email === userEmail);
     if (isExistUser) {
       return;
     }
     let newUser = {
-      id: user.length + 1,
       name: userName,
       email: userEmail,
       phone: "",
@@ -39,7 +49,7 @@ const Register = () => {
         "https://media.techmaster.vn/api/static/crop/bv9jp4k51co7nj2mhht0",
       password: userPassWord,
     };
-    dispatchUser(addUser(newUser));
+    dispatch(addUsers(newUser));
     navigate("/login")
     console.log("dk thanh cong", newUser);
   };

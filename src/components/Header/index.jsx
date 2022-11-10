@@ -4,7 +4,9 @@ import logo from "../../assets/image/logo.png";
 import user from "../../assets/image/user.png";
 import avatar from "../../assets/image/avatar.jpg";
 import { Link, NavLink } from "react-router-dom";
-import Context from "../../context/Context";
+// import Context from "../../context/Context";
+import { useDispatch, useSelector } from "react-redux"
+import { getProduct, addProduct } from "../../redux/productCartSlice";
 import CartSideBar from "./CartSideBar";
 import HeartSideBar from "./HeartSideBar";
 import NavSidebar from "./NavSidebar";
@@ -15,8 +17,17 @@ import productApi from "../../api/productApi";
 import useDebounce from "../../hooks/useDebounce";
 
 const Header = () => {
-    const { productCartItem, products, auth, dispatchAuth } =
-        useContext(Context);
+    // const { productCartItem, products, auth, dispatchAuth } =
+    //     useContext(Context);
+    const productCart = useSelector((state) => state.productCart.productCart)
+    const dispatch = useDispatch()
+
+
+    useEffect(() => {
+        dispatch((getProduct()))
+    },[])
+
+    let auth = ''
 
     const [inputSearch, setInputSearch] = useState("");
     const [productSearch, setProductSearch] = useState([]);
@@ -44,7 +55,7 @@ const Header = () => {
     }, [debounce]);
 
     const handleLogout = () => {
-        dispatchAuth(logout());
+        // dispatchAuth(logout());
     };
     const handleCheckout = () => {
         setShowOverlay(false);
@@ -260,7 +271,7 @@ const Header = () => {
                                         className="fa-solid fa-basket-shopping"
                                     ></i>
                                     <div className="header-cart-number">
-                                        <p>{productCartItem.length}</p>
+                                        <p>{productCart.length}</p>
                                     </div>
                                 </a>
                             </div>
@@ -272,7 +283,7 @@ const Header = () => {
                         <div className="navbar-content">
                             <ul className="navbar-list">
                                 <li className="navbar-item">
-                                    <NavLink className="nav-link" to="/">
+                                    <NavLink end className="nav-link" to="/">
                                         Trang Chủ
                                     </NavLink>
                                 </li>

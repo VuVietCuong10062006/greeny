@@ -6,3 +6,7 @@ const formatMoney = (number) =>{
 }
 
 export default formatMoney
+
+export function isEmpty(obj) {
+  return Object.keys(obj).length === 0;
+}

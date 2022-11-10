@@ -1,4 +1,38 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "name": "sdf",
+      "email": "fsd@gmail.com",
+      "phone": "",
+      "avatar": "https://media.techmaster.vn/api/static/crop/bv9jp4k51co7nj2mhht0",
+      "password": "123456"
+    },
+    {
+      "name": "vuvietcuong2",
+      "email": "vuvietcuong2@gmail.com",
+      "phone": "",
+      "avatar": "https://media.techmaster.vn/api/static/crop/bv9jp4k51co7nj2mhht0",
+      "password": "123456",
+      "id": 2
+    },
+    {
+      "name": "vuvietcuong",
+      "email": "vuvietcuong@gmail.com",
+      "phone": "",
+      "avatar": "https://media.techmaster.vn/api/static/crop/bv9jp4k51co7nj2mhht0",
+      "password": "123456",
+      "id": 3
+    }
+  ],
+  "auth": {
+    "id": 1,
+    "name": "sdf",
+    "email": "fsd@gmail.com",
+    "phone": "",
+    "avatar": "https://media.techmaster.vn/api/static/crop/bv9jp4k51co7nj2mhht0",
+    "password": "123456"
+  },
   "tags": [
     {
       "name": "New Items",
@@ -63,6 +97,50 @@
     {
       "name": "Một sao",
       "value": "1"
+    }
+  ],
+  "carts": [
+    {
+      "id": 4,
+      "name": "Lá trà xanh",
+      "price": 63000,
+      "image": "https://y5kbp0ifnvobj.vcdn.cloud/uploads/filecloud/2022/July/19/13011-895661658204656-1658204656--400x400.jpg",
+      "count": 1
+    },
+    {
+      "id": 2,
+      "name": "Lá lách romani",
+      "price": 32000,
+      "image": "https://y5kbp0ifnvobj.vcdn.cloud/uploads/filecloud/2022/July/29/13343-116861659063762-1659063762--400x400.jpg",
+      "count": 1
+    },
+    {
+      "id": 3,
+      "name": "Mồng tơi hữu cơ",
+      "price": 25000,
+      "image": "https://y5kbp0ifnvobj.vcdn.cloud/uploads/filecloud/2022/July/29/13515-260701659086944-1659086944--400x400.jpeg",
+      "count": 1
+    },
+    {
+      "id": 11,
+      "name": "Thanh long ruột đỏ",
+      "price": 99000,
+      "image": "https://y5kbp0ifnvobj.vcdn.cloud/uploads/filecloud/2022/July/19/12995-907221658203106-1658203106--400x400.jpg",
+      "count": 1
+    },
+    {
+      "id": 10,
+      "name": "Bông cải xanh",
+      "price": 45000,
+      "image": "https://y5kbp0ifnvobj.vcdn.cloud/uploads/filecloud/2022/July/25/13157-603011658737353-1658737353--400x400.jpg",
+      "count": 1
+    },
+    {
+      "id": 9,
+      "name": "Hành lá hữu cơ",
+      "price": 21000,
+      "image": "https://y5kbp0ifnvobj.vcdn.cloud/uploads/filecloud/2022/July/29/13454-965921659084305-1659084305--400x400.jpg",
+      "count": 1
     }
   ],
   "products": [
